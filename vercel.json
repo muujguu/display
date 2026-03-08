@@ -1,0 +1,32 @@
+{
+  "functions": {
+    "api/*.js": {
+      "memory": 256,
+      "maxDuration": 15
+    }
+  },
+  "headers": [
+    {
+      "source": "/api/proxy",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=604800" },
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET, OPTIONS" },
+        { "key": "Access-Control-Allow-Headers", "value": "Content-Type" }
+      ]
+    },
+    {
+      "source": "/api/((?!proxy).*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-store" },
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET, POST, OPTIONS" },
+        { "key": "Access-Control-Allow-Headers", "value": "Content-Type" }
+      ]
+    }
+  ],
+  "rewrites": [
+    { "source": "/", "destination": "/api/index" },
+    { "source": "/api/log.txt", "destination": "/api/config" }
+  ]
+}

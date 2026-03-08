@@ -1,0 +1,9 @@
+{
+  "name": "display",
+  "version": "1.0.0",
+  "description": "KioskOS Vercel backend",
+  "private": true,
+  "engines": {
+    "node": "20.x"
+  }
+}
